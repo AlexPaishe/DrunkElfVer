@@ -56,15 +56,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Auto Letterbox\Util.cs" />
     <Compile Include="Assets\Script\GrandMenuScript.cs" />
     <Compile Include="Assets\Script\SoundScript.cs" />
     <Compile Include="Assets\Script\BattleCardScript.cs" />
     <Compile Include="Assets\Script\UIManagerScript.cs" />
+    <Compile Include="Assets\Auto Letterbox\ForceCameraRatio.cs" />
     <Compile Include="Assets\Script\GameManagerScript.cs" />
     <Compile Include="Assets\Script\CardScript.cs" />
     <Compile Include="Assets\Script\CardManagerScript.cs" />
-    <Compile Include="Assets\Auto Letterbox\ForceCameraRatio.cs" />
-    <Compile Include="Assets\Auto Letterbox\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

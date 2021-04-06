@@ -305,7 +305,7 @@ public class CardScript : MonoBehaviour
             transform.position = UP;           
             Vector3 ScaleUP = transform.localScale;
             ScaleUP.x *= 1.4f;
-            ScaleUP.y *= 1.4f;
+            ScaleUP.y *= 2f;
             transform.localScale = ScaleUP;
             Sound.SearchCardSound();
             transform.SetParent(DefaultParent.parent);
