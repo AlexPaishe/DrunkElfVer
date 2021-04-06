@@ -63,6 +63,8 @@
     <Compile Include="Assets\Script\GameManagerScript.cs" />
     <Compile Include="Assets\Script\CardScript.cs" />
     <Compile Include="Assets\Script\CardManagerScript.cs" />
+    <Compile Include="Assets\Auto Letterbox\ForceCameraRatio.cs" />
+    <Compile Include="Assets\Auto Letterbox\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
