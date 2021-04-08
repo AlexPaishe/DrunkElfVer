@@ -24,11 +24,18 @@ public class UIManagerScript : MonoBehaviour
     public GameObject Setting;//Меню настроек
     public Slider MusicSound;//Настрока громкости музыки
     public Slider SoundSound;//Настройка громкости звуков
+    public Slider EnvironmentSound;//Настройка громкости звуков окружения
     private float MusicVolume = 0;//Громкость музыки
     private float SoundVolume = 0;//Громкость звуков
-    private bool endmatch = false;
+    private float EnvironmentVolume = 0;//Громкость окружения
+    private bool endmatch = false;//Окончился ли матч
+    public AudioClip Click;//Воспроизведение звука на нажатие кнопки
+    private bool setmenu;//Включено ли меню настроек
+    private bool openpausemenu = false; //Открыто ли меню паузы
     void Start()
     {
+        setmenu = false;
+
         game = FindObjectOfType<GameManagerScript>();
 
         Sound = FindObjectOfType<SoundScript>();
@@ -52,15 +59,17 @@ public class UIManagerScript : MonoBehaviour
 
         MusicSound.value = MusicVolume;
         SoundSound.value = SoundVolume;
+        EnvironmentSound.value = EnvironmentVolume;
+
     }
 
     private void Awake()
     {
         MusicVolume = PlayerPrefs.GetFloat("MusicSound");
         SoundVolume = PlayerPrefs.GetFloat("SoundSound");
+        EnvironmentVolume = PlayerPrefs.GetFloat("EnvironmentSound");
     }
 
-    // Update is called once per frame
     void Update()
     {
         HotCardInd();
@@ -69,9 +78,9 @@ public class UIManagerScript : MonoBehaviour
 
         EndMatch();
 
-        PauseMenu();
-
         SoundSetting();
+
+        PauseMenu();
     }
 
     private void FixedUpdate()
@@ -207,19 +216,36 @@ public class UIManagerScript : MonoBehaviour
             {
                 game.go = false;
                 Pause.SetActive(true);
+                if(setmenu == true && openpausemenu == false)
+                {
+                    setmenu = false;
+                    openpausemenu = true;
+                }
             }
             else
             {
                 game.go = true;
                 Pause.SetActive(false);
                 Setting.SetActive(false);
+                openpausemenu = false;
             }
         }
     }
 
     public void SettingMenu()//Включение меню настроек
     {
-        Setting.SetActive(true);
+        if (setmenu == false)
+        {
+            Setting.SetActive(true);
+            setmenu = true;
+        }
+        else
+        {
+            Setting.SetActive(false);
+            setmenu = false;
+        }
+        Sound.SoundCard.clip = Click;
+        Sound.SoundCard.Play();
     }
 
     public void MusicAction( float val)//Настрока Громкости Музыки
@@ -232,10 +258,16 @@ public class UIManagerScript : MonoBehaviour
         PlayerPrefs.SetFloat("SoundSound", val);
     }
 
+    public void EnvironmentAction( float val)//Настройка громкости окружения
+    {
+        PlayerPrefs.SetFloat("EnvironmentSound", val);
+    }
+
     private void SoundSetting()//Просчитывание настроек
     {
         Sound.Music.volume = PlayerPrefs.GetFloat("MusicSound");
         Sound.SoundCard.volume = PlayerPrefs.GetFloat("SoundSound");
+        Sound.EnvironmentSound.volume = PlayerPrefs.GetFloat("EnvironmentSound");
     }
 
     public void GrandMenu()//Возвращение в главное меню

@@ -6,15 +6,20 @@ public class SoundScript : MonoBehaviour
 {
     public AudioSource Music;//Музыка
     public AudioSource SoundCard;//Произведение звуков
+    public AudioSource EnvironmentSound; //Произведение звуков окружения
     public AudioClip[] AllSound;//Все звуки
-    public float TimerBegin;
-    private float Timer;
-    public bool GiveCardSound = false;
+    public AudioClip[] AllEnvironmentSound;//Все звуки окружения
+    private float Timer;//Время до следующего звука
+    public bool GiveCardSound = false;//Дана ли карта
+    private GameManagerScript game;// Менеджер игры
+    [SerializeField] private float minTime; //Минимальное время появления звука окружения
+    [SerializeField] private float maxTime; //Максимальное время появления звука окружения
 
     private void Start()
     {
-        Timer = TimerBegin;
         GiveCardSound = false;
+        game = FindObjectOfType<GameManagerScript>();
+        Timer = Random.Range(4, 8);
     }
 
     public void SearchCardSound()//Звук при переходе с карты на карту
@@ -70,6 +75,8 @@ public class SoundScript : MonoBehaviour
     private void Update()
     {
         GiveCardSounds();
+
+        EnvironmentAudio();
     }
 
     private void GiveCardSounds()//Звук получение карты
@@ -80,6 +87,21 @@ public class SoundScript : MonoBehaviour
             SoundCard.clip = AllSound[GiveCard];
             SoundCard.Play();
             GiveCardSound = false;
+        }
+    }
+
+    private void EnvironmentAudio()//Воспроизведение звуков окружения
+    {
+        if (game.go == true)
+        {
+            Timer -= Time.deltaTime;
+            if (Timer < 0)
+            {
+                int rand = Random.Range(0, AllEnvironmentSound.Length);
+                EnvironmentSound.clip = AllEnvironmentSound[rand];
+                EnvironmentSound.Play();
+                Timer = Random.Range(minTime, maxTime);
+            }
         }
     }
 }

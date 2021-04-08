@@ -57,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Auto Letterbox\Util.cs" />
+    <Compile Include="Assets\Script\RotateTurnIndicator.cs" />
     <Compile Include="Assets\Script\GrandMenuScript.cs" />
     <Compile Include="Assets\Script\SoundScript.cs" />
+    <Compile Include="Assets\Script\RotateOrb.cs" />
     <Compile Include="Assets\Script\BattleCardScript.cs" />
     <Compile Include="Assets\Script\UIManagerScript.cs" />
     <Compile Include="Assets\Auto Letterbox\ForceCameraRatio.cs" />

@@ -21,8 +21,8 @@ public class CardScript : MonoBehaviour
     private Vector3 ScaleCard;//Переменная начального размера карты
     private Vector3 transformCard;//Переменная начального расположения карты
     private SoundScript Sound;//Звуки
-    public GameObject FreeCard;
-    private Vector3 TransFree;
+    public GameObject FreeCard;//Свободная карта которая ставится на место поднятой карты
+    private Vector3 TransFree;//Изначальное расположение Свободной карты
 
     private void Start()
     {

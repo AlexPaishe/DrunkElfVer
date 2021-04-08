@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class GrandMenuScript : MonoBehaviour
 {
-    private Animator anima;
-    public GameObject[] Menu;
-    public Slider MusicSlider;
-    public Slider SoundSlider;
-    private float MusicVolume = 0;
-    private float SoundVolume = 0;
-    public AudioSource Music;
-    public AudioSource SoundCard;
-    public Material BarMat;
+    private Animator anima;// Аниматор двери
+    public GameObject[] Menu; //Экраны меню
+    public Slider MusicSlider;// Слайдер изменения громкости музыки
+    public Slider SoundSlider;// Слайдер изменения громкости звуков
+    public Slider EnvironmentSlider;//Слайдер изменения громкости окружения
+    private float MusicVolume = 0;// Громкость музыки
+    private float SoundVolume = 0;// Громкость звуков
+    private float EnvironmentVolume = 0; //Громкость окружения
+    public AudioSource Music; //Музыка
+    public AudioSource SoundCard; //Звуки карт и битвы
+    public Material BarMat; //Материал вывески бара
     
     void Start()
     {
@@ -22,26 +24,28 @@ public class GrandMenuScript : MonoBehaviour
         BarMat.DisableKeyword("_EMISSION");
         MusicSlider.value = MusicVolume;
         SoundSlider.value = SoundVolume;
+        EnvironmentSlider.value = EnvironmentVolume;
     }
 
     private void Awake()
     {
         MusicVolume = PlayerPrefs.GetFloat("MusicSound");
         SoundVolume = PlayerPrefs.GetFloat("SoundSound");
+        EnvironmentVolume = PlayerPrefs.GetFloat("EnvironmentSound");
     }
 
-    // Update is called once per frame
     void Update()
     {
         SoundSetting();
     }
 
-    public void OpenDoor()
+    public void OpenDoor()//Открытие двери
     {
         anima.SetTrigger("OpenDoor");
+        SoundCard.Play();
     }
 
-    public void BeginGame()
+    public void BeginGame() // Начало игры
     {
         SceneManager.LoadScene(1);
     }
@@ -51,38 +55,43 @@ public class GrandMenuScript : MonoBehaviour
         Application.Quit();
     }
 
-    public void Author()
+    public void Author() //Открытие меню об авторах
     {
         Debug.Log("Author");
         Menu[0].SetActive(false);
         Menu[1].SetActive(true);
+        SoundCard.Play();
     }
 
-    public void Setting()
+    public void Setting() // Открытие меню настроек
     {
         Menu[0].SetActive(false);
         Menu[3].SetActive(true);
+        SoundCard.Play();
     }
 
-    public void Rules()
+    public void Rules()// Открытие меню правил
     {
         Menu[0].SetActive(false);
         Menu[2].SetActive(true);
+        SoundCard.Play();
     }
 
-    public void Collection()
+    public void Collection()//Открытие меню коллекции карт
     {
         Menu[0].SetActive(false);
         Menu[4].SetActive(true);
+        SoundCard.Play();
     }
 
-    public void BackMenu()
+    public void BackMenu()//Возвращение на главное меню
     {
         for(int i = 1;i<Menu.Length;i++)
         {
             Menu[i].SetActive(false);
         }
         Menu[0].SetActive(true);
+        SoundCard.Play();
     }
 
     private void SoundSetting()//Просчитывание настроек
@@ -101,12 +110,17 @@ public class GrandMenuScript : MonoBehaviour
         PlayerPrefs.SetFloat("SoundSound", val);
     }
 
-    public void OnPoint()
+    public void EnvironmentAction(float val)//Настройка громкости окружения
+    {
+        PlayerPrefs.SetFloat("EnvironmentSound", val);
+    }
+
+    public void OnPoint() //Включение вывески бар при наведении на дверь
     {
         BarMat.EnableKeyword("_EMISSION");
     }
 
-    public void OffPoint()
+    public void OffPoint()//Выключение вывески бар при отведения курсора от двери
     {
         BarMat.DisableKeyword("_EMISSION");
     }
