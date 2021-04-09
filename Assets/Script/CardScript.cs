@@ -96,6 +96,7 @@ public class CardScript : MonoBehaviour
                         BattleCard.Race = Race;
                         BattleCard.Specialization = Specialization;
                         BattleCard.ForceCard = ForceCard;
+                        BattleCard.Name.text = Name.text;
                         BattleCard.InstallCardIconAndNumber();
                         BattleCard.ColorPlayer(0);
 

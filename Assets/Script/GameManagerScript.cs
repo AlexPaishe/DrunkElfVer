@@ -123,10 +123,10 @@ public class GameManagerScript : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (timer < 0)
                 {
+                    Road++;
                     FirstEnemy();
                     timer = timerBegin;
                     FirstText.color = Color.yellow;
-                    Road++;
                 }
             }
             if (Turn == 2)
@@ -135,10 +135,10 @@ public class GameManagerScript : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (timer < 0)
                 {
+                    Road++;
                     SecondEnemy();
                     timer = timerBegin;
                     SecondText.color = Color.green;
-                    Road++;
                 }
             }
             if (Turn == 3)
@@ -147,10 +147,10 @@ public class GameManagerScript : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (timer < 0)
                 {
+                    Road++;
                     ThirdEnemy();
                     timer = timerBegin;
                     ThirdText.color = Color.magenta;
-                    Road++;
                 }
             }
         }
@@ -207,6 +207,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.BattleImage.sprite = CurrentGame.SecondEnemyHand[i].Logo;
                 battle.ForceCard = CurrentGame.SecondEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.SecondEnemyHand[i].Specialization;
+                battle.Name.text = CurrentGame.SecondEnemyHand[i].Name;
                 battle.InstallCardIconAndNumber();
                 battle.ColorPlayer(2);
 
@@ -280,6 +281,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.BattleImage.sprite = CurrentGame.FirstEnemyHand[i].Logo;
                 battle.ForceCard = CurrentGame.FirstEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.FirstEnemyHand[i].Specialization;
+                battle.Name.text = CurrentGame.FirstEnemyHand[i].Name;
                 battle.InstallCardIconAndNumber();
                 battle.ColorPlayer(1);
 
@@ -353,6 +355,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.BattleImage.sprite = CurrentGame.ThirdEnemyHand[i].Logo;
                 battle.ForceCard = CurrentGame.ThirdEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.ThirdEnemyHand[i].Specialization;
+                battle.Name.text = CurrentGame.ThirdEnemyHand[i].Name;
                 battle.InstallCardIconAndNumber();
                 battle.ColorPlayer(3);
 
