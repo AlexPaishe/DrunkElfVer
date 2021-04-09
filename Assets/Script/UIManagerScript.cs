@@ -32,6 +32,7 @@ public class UIManagerScript : MonoBehaviour
     public AudioClip Click;//Воспроизведение звука на нажатие кнопки
     private bool setmenu;//Включено ли меню настроек
     private bool openpausemenu = false; //Открыто ли меню паузы
+    [SerializeField] private int sound;
     void Start()
     {
         setmenu = false;
@@ -59,7 +60,7 @@ public class UIManagerScript : MonoBehaviour
 
         MusicSound.value = MusicVolume;
         SoundSound.value = SoundVolume;
-        EnvironmentSound.value = EnvironmentVolume;
+        EnvironmentSound.value = EnvironmentVolume * sound;
 
     }
 
@@ -260,7 +261,7 @@ public class UIManagerScript : MonoBehaviour
 
     public void EnvironmentAction( float val)//Настройка громкости окружения
     {
-        PlayerPrefs.SetFloat("EnvironmentSound", val);
+        PlayerPrefs.SetFloat("EnvironmentSound", val/sound);
     }
 
     private void SoundSetting()//Просчитывание настроек

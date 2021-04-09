@@ -24,7 +24,7 @@ public class GrandMenuScript : MonoBehaviour
         BarMat.DisableKeyword("_EMISSION");
         MusicSlider.value = MusicVolume;
         SoundSlider.value = SoundVolume;
-        EnvironmentSlider.value = EnvironmentVolume;
+        EnvironmentSlider.value = EnvironmentVolume * 3;
     }
 
     private void Awake()
@@ -112,7 +112,7 @@ public class GrandMenuScript : MonoBehaviour
 
     public void EnvironmentAction(float val)//Настройка громкости окружения
     {
-        PlayerPrefs.SetFloat("EnvironmentSound", val);
+        PlayerPrefs.SetFloat("EnvironmentSound", val / 3);
     }
 
     public void OnPoint() //Включение вывески бар при наведении на дверь

@@ -2247,8 +2247,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 167fa0875579ae945881d431cec5c969, type: 3}
   - {fileID: 8300000, guid: 37a9eb3f43cd83e46a0592d6f4e9923d, type: 3}
   AllEnvironmentSound:
-  - {fileID: 8300000, guid: 2bdfdb2d1c41dd34f969b070d1e53d3d, type: 3}
   - {fileID: 8300000, guid: 5f9268ac579302c4a845c9ee7ef65f25, type: 3}
+  - {fileID: 8300000, guid: 2bdfdb2d1c41dd34f969b070d1e53d3d, type: 3}
   - {fileID: 8300000, guid: ef827314586025b4fbd8a6f26002c27e, type: 3}
   - {fileID: 8300000, guid: 23953fed494231944974af5fd10156fb, type: 3}
   - {fileID: 8300000, guid: b37fb6e075475134585ffd18adbf22a1, type: 3}
@@ -2364,7 +2364,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bbab4484210bc1240b42164d671c421f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: afca318d1400baa4a930bb86e4ce69f9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.094
   m_Pitch: 1
@@ -5526,6 +5526,7 @@ MonoBehaviour:
   SoundSound: {fileID: 1693665193}
   EnvironmentSound: {fileID: 124550172}
   Click: {fileID: 8300000, guid: 27da5d9175ba2b2409819b228f7fbd82, type: 3}
+  sound: 3
 --- !u!1 &1580749155
 GameObject:
   m_ObjectHideFlags: 0
