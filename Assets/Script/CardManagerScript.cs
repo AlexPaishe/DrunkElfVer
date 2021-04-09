@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public struct Card
 {
@@ -9,13 +9,15 @@ public struct Card
     public int Race;//Расса карты
     public int ForceCard;//Сила карты
     public int Specialization;//Специализация
+    public string Name;//Имя героя
 
-    public Card(Sprite logo, int race, int forcecard, int specialization)//Конструктор карты
+    public Card(Sprite logo, int race, int forcecard, int specialization, string name)//Конструктор карты
     {
         Logo = logo;
         Race = race;
         ForceCard = forcecard;
         Specialization = specialization;
+        Name = name;
     }
 }
 
@@ -27,6 +29,8 @@ public static class CardManager
 public class CardManagerScript : MonoBehaviour
 {
     public Sprite[] CardVariation;//Все виды картинок карты
+
+    public string[] NameCard;//Имена героев карт
 
     private void Awake()
     {
@@ -42,14 +46,14 @@ public class CardManagerScript : MonoBehaviour
                 {
                     if (count == 1)
                     {
-                        CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec));
+                        CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec, NameCard[i]));
                         //Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
                         number++;
                     }
                     else if (count > 1)
                     {
                         number++;
-                        CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec));
+                        CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec, NameCard[i]));
                         //Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
                     }
                 }
@@ -57,7 +61,7 @@ public class CardManagerScript : MonoBehaviour
                 {
                     count++;
                     number = 1;
-                    CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec));
+                    CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec, NameCard[i]));
                     //Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
                 }
             }
@@ -66,21 +70,21 @@ public class CardManagerScript : MonoBehaviour
                 count = 1;
                 number = 1;
                 spec++;
-                CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec));
+                CardManager.AllCards.Add(new Card(CardVariation[i], count, number, spec, NameCard[i]));
                 //Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
                 number++;
             }
             else if (i == CardVariation.Length - 2)
             {
                 count = 4;
-                CardManager.AllCards.Add(new Card(CardVariation[i], count, 0, 0));
-                Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
+                CardManager.AllCards.Add(new Card(CardVariation[i], count, 0, 0, NameCard[i]));
+                //Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
             }
             else if (i == CardVariation.Length - 1)
             {
                 count = 5;
-                CardManager.AllCards.Add(new Card(CardVariation[i], count, 0, 0));
-                Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
+                CardManager.AllCards.Add(new Card(CardVariation[i], count, 0, 0, NameCard[i]));
+                //Debug.Log($" Номер {i} Картинка {CardVariation[i].name} Раса {count} Сила {number} сециализация {spec}");
             }
         }
         #endregion

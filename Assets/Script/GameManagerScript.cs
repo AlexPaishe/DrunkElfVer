@@ -204,6 +204,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.BattleImage.sprite = CurrentGame.SecondEnemyHand[i].Logo;
                 battle.ForceCard = CurrentGame.SecondEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.SecondEnemyHand[i].Specialization;
+                battle.InstallCardIconAndNumber();
 
                 count++;
                 CurrentGame.SecondEnemyHand.RemoveAt(i);
@@ -275,6 +276,8 @@ public class GameManagerScript : MonoBehaviour
                 battle.BattleImage.sprite = CurrentGame.FirstEnemyHand[i].Logo;
                 battle.ForceCard = CurrentGame.FirstEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.FirstEnemyHand[i].Specialization;
+                battle.InstallCardIconAndNumber();
+
                 count++;
                 CurrentGame.FirstEnemyHand.RemoveAt(i);
                 break;
@@ -345,6 +348,8 @@ public class GameManagerScript : MonoBehaviour
                 battle.BattleImage.sprite = CurrentGame.ThirdEnemyHand[i].Logo;
                 battle.ForceCard = CurrentGame.ThirdEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.ThirdEnemyHand[i].Specialization;
+                battle.InstallCardIconAndNumber();
+
                 count++;
                 CurrentGame.ThirdEnemyHand.RemoveAt(i);
                 break;

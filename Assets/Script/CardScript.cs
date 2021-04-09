@@ -23,6 +23,9 @@ public class CardScript : MonoBehaviour
     private SoundScript Sound;//Звуки
     public GameObject FreeCard;//Свободная карта которая ставится на место поднятой карты
     private Vector3 TransFree;//Изначальное расположение Свободной карты
+    public Image Icon; //Иконка специализации персонажа
+    public Image Number; //Иконка Количества силы персонажа
+    public Text Name; //Имя персонажа
 
     private void Start()
     {
@@ -40,6 +43,7 @@ public class CardScript : MonoBehaviour
 
         #region Присваивание рандомного значения карты, в зависимости от хода и введение ее в список руки игрока
         ShowCardInfo(CardManager.AllCards[Random.Range(0, cardMan.CardVariation.Length)]);
+        IconAndNumber();
         game.CurrentGame.PlayerHand.Add(SelfCard);
         if (game.Road == 1)
         {
@@ -90,6 +94,7 @@ public class CardScript : MonoBehaviour
                         BattleCard.Race = Race;
                         BattleCard.Specialization = Specialization;
                         BattleCard.ForceCard = ForceCard;
+                        BattleCard.InstallCardIconAndNumber();
                         if (Specialization != 4)
                         {
                             game.ChangeTurn();
@@ -166,6 +171,7 @@ public class CardScript : MonoBehaviour
         Specialization = card.Specialization;
         ForceCard = card.ForceCard;
         CardImage.sprite = card.Logo;
+        Name.text = card.Name;
     }
 
     private void SpecCard()//Реализация получение карт при пробитии специализации
@@ -344,7 +350,7 @@ public class CardScript : MonoBehaviour
         }
     }
 
-    void CheckPosition()//Исправление бага, при котором в каждом ходу карты руки игрока перемешивались
+    private void CheckPosition()//Исправление бага, при котором в каждом ходу карты руки игрока перемешивались
     {
         int newIndex = DefaultParent.childCount;
 
@@ -363,5 +369,32 @@ public class CardScript : MonoBehaviour
         }
 
         FreeCard.transform.SetSiblingIndex(newIndex);
+    }
+
+    private void IconAndNumber()//Реализация иконок специализации и количество силы
+    {
+        for (int i = 0; i < BattleCard.AllIcon.Length; i++)
+        {
+            if (i == Specialization - 1 && Race < 4)
+            {
+                Icon.sprite = BattleCard.AllIcon[i];
+            }
+            else if (Race == 4)
+            {
+                Icon.sprite = BattleCard.AllIcon[BattleCard.AllIcon.Length - 2];
+            }
+            else if (Race == 5)
+            {
+                Icon.sprite = BattleCard.AllIcon[BattleCard.AllIcon.Length - 1];
+            }
+        }
+
+        for (int i = 0; i < BattleCard.AllNumber.Length; i++)
+        {
+            if (i == ForceCard - 1)
+            {
+                Number.sprite = BattleCard.AllNumber[i];
+            }
+        }
     }
 }
