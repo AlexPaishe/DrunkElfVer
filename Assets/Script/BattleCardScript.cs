@@ -62,4 +62,15 @@ public class BattleCardScript : MonoBehaviour
             }
         }
     }
+
+    public void ColorPlayer( int numberPlayer)
+    {
+        switch(numberPlayer)
+        {
+            case 0: Icon.color = Color.cyan; Number.color = Color.cyan; break;
+            case 1: Icon.color = Color.yellow; Number.color = Color.yellow; break;
+            case 2: Icon.color = Color.green; Number.color = Color.green; break;
+            case 3: Icon.color = Color.magenta; Number.color = Color.magenta; break;
+        }
+    }
 }

@@ -44,6 +44,8 @@ public class CardScript : MonoBehaviour
         #region Присваивание рандомного значения карты, в зависимости от хода и введение ее в список руки игрока
         ShowCardInfo(CardManager.AllCards[Random.Range(0, cardMan.CardVariation.Length)]);
         IconAndNumber();
+        Icon.color = Color.cyan;
+        Number.color = Color.cyan;
         game.CurrentGame.PlayerHand.Add(SelfCard);
         if (game.Road == 1)
         {
@@ -95,6 +97,8 @@ public class CardScript : MonoBehaviour
                         BattleCard.Specialization = Specialization;
                         BattleCard.ForceCard = ForceCard;
                         BattleCard.InstallCardIconAndNumber();
+                        BattleCard.ColorPlayer(0);
+
                         if (Specialization != 4)
                         {
                             game.ChangeTurn();

@@ -113,6 +113,7 @@ public class GameManagerScript : MonoBehaviour
                 for (int i = 0; i < CurrentGame.PlayerHand.Count; i++)
                 {
                     //Debug.Log(CurrentGame.PlayerHand[i].Logo);
+                    Debug.Log(CurrentGame.PlayerHand.Count);
                 }
                 PlayerCard();
             }
@@ -124,7 +125,8 @@ public class GameManagerScript : MonoBehaviour
                 {
                     FirstEnemy();
                     timer = timerBegin;
-                    FirstText.color = Color.white;
+                    FirstText.color = Color.yellow;
+                    Road++;
                 }
             }
             if (Turn == 2)
@@ -135,7 +137,8 @@ public class GameManagerScript : MonoBehaviour
                 {
                     SecondEnemy();
                     timer = timerBegin;
-                    SecondText.color = Color.white;
+                    SecondText.color = Color.green;
+                    Road++;
                 }
             }
             if (Turn == 3)
@@ -146,7 +149,7 @@ public class GameManagerScript : MonoBehaviour
                 {
                     ThirdEnemy();
                     timer = timerBegin;
-                    ThirdText.color = Color.white;
+                    ThirdText.color = Color.magenta;
                     Road++;
                 }
             }
@@ -205,6 +208,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.ForceCard = CurrentGame.SecondEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.SecondEnemyHand[i].Specialization;
                 battle.InstallCardIconAndNumber();
+                battle.ColorPlayer(2);
 
                 count++;
                 CurrentGame.SecondEnemyHand.RemoveAt(i);
@@ -277,6 +281,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.ForceCard = CurrentGame.FirstEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.FirstEnemyHand[i].Specialization;
                 battle.InstallCardIconAndNumber();
+                battle.ColorPlayer(1);
 
                 count++;
                 CurrentGame.FirstEnemyHand.RemoveAt(i);
@@ -349,6 +354,7 @@ public class GameManagerScript : MonoBehaviour
                 battle.ForceCard = CurrentGame.ThirdEnemyHand[i].ForceCard;
                 battle.Specialization = CurrentGame.ThirdEnemyHand[i].Specialization;
                 battle.InstallCardIconAndNumber();
+                battle.ColorPlayer(3);
 
                 count++;
                 CurrentGame.ThirdEnemyHand.RemoveAt(i);
